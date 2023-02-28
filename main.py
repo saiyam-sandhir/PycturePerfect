@@ -1,7 +1,4 @@
 import customtkinter as ctk
-import tkinter as tk
-import time
-import PIL
 import sys
 import os
 
