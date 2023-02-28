@@ -1,5 +1,6 @@
 import customtkinter as ctk
 import tkinter as tk
+from tktooltip import ToolTip
 import time
 
 import baseobjects
@@ -11,7 +12,8 @@ class ImageLoader(ctk.CTkFrame):
         # File Button to import image from the system
         file_button = baseobjects.Button(
             self, 
-            image_path="images/viewer-frame/open-file.png"
+            image_path="images/viewer-frame/open-file.png",
+            msg="Open image from system"
         )
         file_button.pack(
             side=ctk.LEFT,
@@ -22,7 +24,8 @@ class ImageLoader(ctk.CTkFrame):
         # Link Button to import image from web
         link_button = baseobjects.Button(
             self, 
-            image_path="images/viewer-frame/link.png"
+            image_path="images/viewer-frame/link.png",
+            msg="Get image from the Web"
         )
         link_button.pack(
             side=ctk.LEFT,
@@ -37,7 +40,8 @@ class Toolbar(ctk.CTkFrame):
         # Edit button that leads to image editor frame
         edit_button = baseobjects.Button(
             self, 
-            image_path="images/viewer-frame/edit.png"
+            image_path="images/viewer-frame/edit.png",
+            msg="Edit image"
         )
         edit_button.pack(
             side=ctk.LEFT,
@@ -48,7 +52,8 @@ class Toolbar(ctk.CTkFrame):
         # Rotate button to rotate the image clock-wise
         rotate_button = baseobjects.Button(
             self, 
-            image_path="images/viewer-frame/rotate.png"
+            image_path="images/viewer-frame/rotate.png",
+            msg="Rotate image clockwise"
         )
         rotate_button.pack(
             side=ctk.LEFT,
@@ -58,7 +63,8 @@ class Toolbar(ctk.CTkFrame):
         # Delete button to delete the image if in the system
         delete_button = baseobjects.Button(
             self, 
-            image_path="images/viewer-frame/delete.png"
+            image_path="images/viewer-frame/delete.png",
+            msg="Delete image"
         )
         delete_button.pack(
             side=ctk.LEFT,
@@ -68,7 +74,8 @@ class Toolbar(ctk.CTkFrame):
         # Info button to get information about the image
         info_button = baseobjects.Button(
             self, 
-            image_path="images/viewer-frame/info.png"
+            image_path="images/viewer-frame/info.png",
+            msg="About image"
         )
         info_button.pack(
             side=ctk.LEFT,
@@ -78,7 +85,8 @@ class Toolbar(ctk.CTkFrame):
         # Share button for user to share image
         share_button = baseobjects.Button(
             self, 
-            image_path="images/viewer-frame/share.png"
+            image_path="images/viewer-frame/share.png",
+            msg="Share image"
         )
         share_button.pack(
             side=ctk.LEFT,
@@ -90,7 +98,8 @@ class MoreButton(baseobjects.Button):
     def __init__(self, master: baseobjects.Frame):
         super().__init__(
             master,
-            image_path="images/viewer-frame/more.png"
+            image_path="images/viewer-frame/more.png",
+            msg="More..."
         )
 
 class ZoomControler(ctk.CTkFrame):
@@ -116,6 +125,7 @@ class ZoomControler(ctk.CTkFrame):
         zoomout_button = baseobjects.Button(
             self, 
             image_path="images/viewer-frame/zoom-out.png",
+            msg="Zoom out",
             command=lambda: self.zoom_on_click(-ZOOM_MAGNITUDE)
         )
         zoomout_button.bind("<ButtonPress-1>", lambda event: self.start_zoom_on_hold(-ZOOM_MAGNITUDE * 1.5))
@@ -129,6 +139,7 @@ class ZoomControler(ctk.CTkFrame):
         zoomin_button = baseobjects.Button(
             self, 
             image_path="images/viewer-frame/zoom-in.png",
+            msg="Zoom in",
             command=lambda: self.zoom_on_click(ZOOM_MAGNITUDE)
         )
         zoomin_button.bind("<ButtonPress-1>", lambda event: self.start_zoom_on_hold(ZOOM_MAGNITUDE * 1.5))
@@ -165,7 +176,8 @@ class ViewController(ctk.CTkFrame):
         # Fullscreen button
         fullscreen_button = baseobjects.Button(
             self, 
-            image_path="images/viewer-frame/fullscreen.png"
+            image_path="images/viewer-frame/fullscreen.png",
+            msg="Fullscreen view"
         )
         fullscreen_button.pack(
             side=ctk.LEFT,
@@ -176,7 +188,8 @@ class ViewController(ctk.CTkFrame):
         # Fitscreen button
         fitscreen_button = baseobjects.Button(
             self,
-            image_path="images/viewer-frame/fitscreen.png"
+            image_path="images/viewer-frame/fitscreen.png",
+            msg="Fitscreen view"
         )
         fitscreen_button.pack(
             side=ctk.LEFT,

@@ -1,4 +1,6 @@
 import customtkinter as ctk
+import tkinter as tk
+import tktooltip
 import PIL
 
 class Frame(ctk.CTkFrame):
@@ -9,8 +11,18 @@ class Frame(ctk.CTkFrame):
             corner_radius=0
             )
 
+class ToolTip(tktooltip.ToolTip):
+    def __init__(self, master: tk.Widget, msg: str):
+        super().__init__(
+            master,
+            msg=msg,
+            delay=0.75,
+            bg="gray45",
+            fg="white"
+        )
+
 class Button(ctk.CTkButton):
-    def __init__(self, master: ctk.CTkFrame, image_path: str, command=lambda: []):
+    def __init__(self, master: ctk.CTkFrame, image_path: str, msg: str, command=lambda: []):
         button_img = ctk.CTkImage(
             light_image=PIL.Image.open(image_path),
             dark_image=PIL.Image.open(image_path),
@@ -24,6 +36,11 @@ class Button(ctk.CTkButton):
             width=35,
             height=35,
             command=command
+        )
+
+        ToolTip(
+            self,
+            msg=msg,
         )
 
 class Label(ctk.CTkLabel):
