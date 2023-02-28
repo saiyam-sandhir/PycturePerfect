@@ -1,8 +1,21 @@
 import customtkinter as ctk
+import tkinter as tk
+import time
+import PIL
+import sys
+import os
+
+scripts = os.path.abspath(os.path.join(os.path.dirname(__file__), "scripts"))
+sys.path.append(scripts)
+
+from frames import viewer
+
+ctk.set_default_color_theme("color-theme.json")
 
 class PycturePerfect(ctk.CTk):
     def __init__(self):
         super().__init__()
+        self.config(padx=10, pady=10)
 
         WIN_MIN_WIDTH, WIN_MIN_HEIGHT = 640, 480
         SCREEN_WIDTH, SCREEN_HEIGHT = self.winfo_screenwidth(), self.winfo_screenheight()
@@ -12,6 +25,8 @@ class PycturePerfect(ctk.CTk):
         self.after(201, lambda: self.iconbitmap("images/icon.ico"))
         self.geometry(f"{WIN_MIN_WIDTH}x{WIN_MIN_HEIGHT}+{WIN_XCOORD}+{WIN_YCOORD}")
         self.minsize(WIN_MIN_WIDTH, WIN_MIN_HEIGHT)
+
+        viewer.Frame(self).pack(side=ctk.LEFT, fill=ctk.X, expand=True)
 
         self.mainloop()
 

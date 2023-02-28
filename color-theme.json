@@ -1,0 +1,46 @@
+{
+    "CTk": {
+      "fg_color": "gray14"
+    },
+    "CTkToplevel": {
+      "fg_color": "gray14"
+    },
+    "CTkFrame": {
+      "corner_radius": 6,
+      "border_width": 0,
+      "fg_color": "gray18",
+      "top_fg_color": "gray16",
+      "border_color": "gray28"
+    },
+    "CTkButton": {
+      "corner_radius": 6,
+      "border_width": 0,
+      "fg_color": "transparent",
+      "hover_color": "#865dff",
+      "border_color": "#949A9F",
+      "text_color": "#DCE4EE",
+      "text_color_disabled": "gray60"
+    },
+    "CTkLabel": {
+      "corner_radius": 0,
+      "fg_color": "transparent",
+      "text_color": "gray84"
+    },
+    "CTkFont": {
+      "macOS": {
+        "family": "SF Display",
+        "size": 13,
+        "weight": "normal"
+      },
+      "Windows": {
+        "family": "Roboto",
+        "size": 13,
+        "weight": "normal"
+      },
+      "Linux": {
+        "family": "Roboto",
+        "size": 13,
+        "weight": "normal"
+      }
+    }
+  }
