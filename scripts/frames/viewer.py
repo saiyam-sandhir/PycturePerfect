@@ -128,7 +128,7 @@ class ZoomControler(ctk.CTkFrame):
             msg="Zoom out",
             command=lambda: self.zoom_on_click(-ZOOM_MAGNITUDE)
         )
-        zoomout_button.bind("<ButtonPress-1>", lambda event: self.start_zoom_on_hold(-ZOOM_MAGNITUDE * 1.5))
+        zoomout_button.bind("<ButtonPress-1>", lambda event: self.start_zoom_on_hold(-ZOOM_MAGNITUDE))
         zoomout_button.bind("<ButtonRelease-1>", lambda event: self.stop_zoom_on_hold())
         zoomout_button.pack(
             side=ctk.RIGHT,
@@ -142,7 +142,7 @@ class ZoomControler(ctk.CTkFrame):
             msg="Zoom in",
             command=lambda: self.zoom_on_click(ZOOM_MAGNITUDE)
         )
-        zoomin_button.bind("<ButtonPress-1>", lambda event: self.start_zoom_on_hold(ZOOM_MAGNITUDE * 1.5))
+        zoomin_button.bind("<ButtonPress-1>", lambda event: self.start_zoom_on_hold(ZOOM_MAGNITUDE))
         zoomin_button.bind("<ButtonRelease-1>", lambda event: self.stop_zoom_on_hold())
         zoomin_button.pack(
             side=ctk.RIGHT,
