@@ -1,5 +1,6 @@
 import customtkinter as ctk
 import sys
+import PIL
 import os
 
 scripts = os.path.abspath(os.path.join(os.path.dirname(__file__), "scripts"))

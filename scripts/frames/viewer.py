@@ -1,7 +1,9 @@
 import customtkinter as ctk
 import tkinter as tk
 from tktooltip import ToolTip
+import PIL
 import time
+import _io
 
 import baseobjects
 
@@ -13,7 +15,8 @@ class ImageLoader(ctk.CTkFrame):
         file_button = baseobjects.Button(
             self, 
             image_path="images/viewer-frame/open-file.png",
-            msg="Open image from system"
+            msg="Open image from system",
+            command=self.load_file
         )
         file_button.pack(
             side=ctk.LEFT,
@@ -32,6 +35,10 @@ class ImageLoader(ctk.CTkFrame):
             padx=(0, 5),
             pady=5
         )
+
+    def load_file(self):
+        if (file_path := tk.filedialog.askopenfilename(filetypes=[("JPEG", "*.jpeg"), ("JPG", "*.jpg"), ("PNG", "*.png")])) != "":
+            image = PIL.Image.open(file_path)
 
 class Toolbar(ctk.CTkFrame):
     def __init__(self, master: baseobjects.Frame):
