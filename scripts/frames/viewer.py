@@ -3,12 +3,11 @@ import tkinter as tk
 from tktooltip import ToolTip
 import PIL
 import time
-import _io
 
 import baseobjects
 
 class ImageLoader(ctk.CTkFrame):
-    def __init__(self, master: baseobjects.Frame):
+    def __init__(self, master: baseobjects.Frame, canvas):
         super().__init__(master)
 
         # File Button to import image from the system
@@ -16,7 +15,7 @@ class ImageLoader(ctk.CTkFrame):
             self, 
             image_path="images/viewer-frame/open-file.png",
             msg="Open image from system",
-            command=self.load_file
+            command=lambda: self.load_file_image(canvas)
         )
         file_button.pack(
             side=ctk.LEFT,
@@ -36,9 +35,14 @@ class ImageLoader(ctk.CTkFrame):
             pady=5
         )
 
-    def load_file(self):
+    def load_file_image(self, canvas):
         if (file_path := tk.filedialog.askopenfilename(filetypes=[("JPEG", "*.jpeg"), ("JPG", "*.jpg"), ("PNG", "*.png")])) != "":
-            image = PIL.Image.open(file_path)
+            image = PIL.ImageTk.PhotoImage(PIL.Image.open(file_path))
+            canvas.create_image(canvas.winfo_width() / 2 - image.width() / 2, canvas.winfo_height() / 2 - image.height() / 2, anchor=ctk.NW, image=image)
+            self.winfo_toplevel().update_ideltasks()
+
+    def load_link_image(self):
+        pass
 
 class Toolbar(ctk.CTkFrame):
     def __init__(self, master: baseobjects.Frame):
@@ -209,9 +213,12 @@ class Frame(baseobjects.Frame):
         super().__init__(master)
 
         # Placing the above created widgets in the image viewer frame
-        ImageLoader(master).place(relx=0.0, rely=0.0, anchor=ctk.NW)
+        canvas = ctk.CTkCanvas(master, bg="gray14", highlightthickness=False)
+        canvas.place(relx=0.5, rely=0.5, relwidth=1.0, relheight=0.76, anchor=ctk.CENTER)
+
+        ImageLoader(master, canvas=canvas).place(relx=0.0, rely=0.0, anchor=ctk.NW)
         Toolbar(master).pack(side=ctk.TOP)
         MoreButton(master).place(relx=1.0, rely=0.0, anchor=ctk.NE)
-        ctk.CTkCanvas(master, bg="gray14", highlightthickness=False).place(relx=0.5, rely=0.5, relwidth=1.0, relheight=0.76, anchor=ctk.CENTER)
+
         ZoomControler(master).place(relx=1.0, rely=1.0, anchor=ctk.SE)
         ViewController(master).place(relx=0.0, rely=1.0, anchor=ctk.SW)
